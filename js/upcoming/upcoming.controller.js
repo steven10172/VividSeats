@@ -55,6 +55,7 @@
         function(evts){
           $scope.$apply(function() {
             $scope.totalEvents = evts.length;
+            $scope.eventsPerDay = {};
             groupByDay(evts);
           });
         },

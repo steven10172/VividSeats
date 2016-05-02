@@ -54,6 +54,7 @@
       VSeats.eventService.all(
         function(evts){
           $scope.$apply(function() {
+            $scope.eventsPerCity = {};
             $scope.totalEvents = evts.length;
             groupByCity(evts);
           });
