@@ -8,8 +8,8 @@
     .module('app.local', [])
     .controller('LocalController', LocalController);
 
-  LocalController.$inject = ['$rootScope', '$scope', '$http', '$state', 'VividSeatsService'];
-  function LocalController($rootScope, $scope, $http, $state, VSeats) {
+  LocalController.$inject = ['$rootScope', '$scope', '$http', '$state', 'VividSeatsService', 'toaster'];
+  function LocalController($rootScope, $scope, $http, $state, VSeats, toaster) {
     /**
      * Store Events that will be displayed in the UI
      * @type {Array}
@@ -27,6 +27,27 @@
     };
 
     /**
+     * Remove Event
+     * @param evt
+     */
+    $scope.removeEvent = function(evt) {
+      if(window.confirm('Are you sure you want to remove this event?')) {
+        $scope.$eval(function() {
+          VSeats.eventService.remove(evt,
+            function(msg) {
+              toaster.pop('success', "Success", "The event was removed successfully!");
+              loadEvents();
+            },
+            function(msg) {
+              toaster.pop('error', "Error", "There was an error removing the event!");
+              loadEvents();
+            }
+          );
+        });
+      }
+    };
+
+    /**
      * Load Events from API
      */
     function loadEvents() {
@@ -39,7 +60,7 @@
         },
         function(msg){
           $scope.$apply(function() {
-            alert('Error: ' + msg);
+            toaster.pop('error', "Error", "There was an error retrieving events!");
             $scope.eventsPerCity = {};
           });
         }

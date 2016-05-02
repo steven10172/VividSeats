@@ -10,7 +10,8 @@
       'app.routes',
       'app.overview',
       'app.local',
-      'app.upcoming'
+      'app.upcoming',
+      'toaster'
     ])
     .factory("VividSeatsService", function ($window) {
       // Create a service to wrap access to the Global library
