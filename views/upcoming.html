@@ -1,1 +1,41 @@
-Upcoming
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#/app/overview">All Events</a></li>
+    <li role="presentation" class="active"><a href="#/app/upcoming">Upcoming Events</a></li>
+    <li role="presentation"><a href="#/app/local">Local Events</a></li>
+</ul>
+<div ng-controller="UpcomingController">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-responsive" ng-repeat="eventDay in eventsPerDay">
+                <h4>{{::getDate(eventDay.date) | date:"EEEE MMMM d"}}</h4>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Venue</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="event in eventDay.events">
+                        <td>{{event.name}}</td>
+                        <td>{{::getDate(event.date) | date:"MM/dd/yyyy hh:mm:ss a"}}</td>
+                        <td>{{event.venue.name}}</td>
+                        <td>{{event.venue.city}}</td>
+                        <td>{{event.venue.state}}</td>
+                        <td>Remove / Edit</td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="pull-right small text-muted">
+                {{events.length}} Events Found
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</div>
