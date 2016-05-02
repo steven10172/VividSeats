@@ -11,11 +11,15 @@
       'app.overview',
       'app.local',
       'app.upcoming',
-      'toaster'
+      'toaster',
+      'xeditable'
     ])
     .factory("VividSeatsService", function ($window) {
       // Create a service to wrap access to the Global library
       return $window.VividSeats;
+    })
+    .run(function(editableOptions) {
+      editableOptions.theme = 'bs3'; // bootstrap3 theme
     });
 
 })();
