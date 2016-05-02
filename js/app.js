@@ -1,3 +1,16 @@
 /**
  * Created by Steven Brice on 5/1/2016.
  */
+
+(function() {
+  'use strict';
+
+  angular
+    .module('vividseats', [
+      'app.routes',
+      'app.overview',
+      'app.local',
+      'app.upcoming'
+    ]);
+
+})();
