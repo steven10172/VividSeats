@@ -69,6 +69,20 @@
         return;
       }
 
+      if(evt.new === true) {
+        // Add the event with the API
+        return VSeats.eventService.add(evt,
+          function(msg) {
+            toaster.pop('success', "Success", "The event was added successfully!");
+            loadEvents();
+          },
+          function(msg) {
+            toaster.pop('error', "Error", "There was an error adding the event!");
+            loadEvents();
+          }
+        );
+      }
+
       // Update the event with the API
       VSeats.eventService.update(evt,
         function(msg) {
