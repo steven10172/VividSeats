@@ -15,6 +15,7 @@
      * @type {Array}
      */
     $scope.eventsPerDay = {};
+    $scope.totalEvents = 0;
 
     /**
      * Turn Date String into date object
@@ -32,6 +33,7 @@
       VSeats.eventService.all(
         function(evts){
           $scope.$apply(function() {
+            $scope.totalEvents = evts.length;
             groupByDay(evts);
           });
         },
