@@ -1,0 +1,13 @@
+{
+  "name": "VividSeats",
+  "version": "0.0.1",
+  "description": "Vivid Seats Coding Challenge",
+  "author": "@steven10172",
+  "dependencies": {},
+  "private": true,
+  "devDependencies": {},
+  "scripts": {
+    "prestart": "bower install",
+    "start": "http-server -a localhost -p 8000"
+  }
+}
