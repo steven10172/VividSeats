@@ -8,8 +8,26 @@
     .module('app.overview', [])
     .controller('OverviewController', OverviewController);
 
-  OverviewController.$inject = ['$rootScope', '$scope', '$http', '$state'];
-  function OverviewController($rootScope, $scope, $http, $state) {
-    //
+  OverviewController.$inject = ['$rootScope', '$scope', '$http', '$state', 'VividSeatsService'];
+  function OverviewController($rootScope, $scope, $http, $state, VSeats) {
+    $scope.events = [];
+
+    $scope.getDate = function(dateString) {
+      return Date.parse(dateString);
+    };
+
+    VSeats.eventService.all(
+      function(evts){
+        $scope.$apply(function() {
+          $scope.events = evts;
+        });
+      },
+      function(msg){
+        $scope.$apply(function() {
+          alert('Error: ' + msg);
+          $scope.events = [];
+        });
+      }
+    );
   }
 })();
